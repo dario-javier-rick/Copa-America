@@ -2,28 +2,76 @@ package Logica;
 
 import java.io.Serializable;
 
-public class Jugador implements Serializable {
-	
+public abstract class Jugador implements Serializable {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	String Nombre;
-	String Seleccion;
-	double Puntaje;
-	TipoJugador Posicion;
-	int TarjetasAmarillas;
-	int TarjetasRojas;
+	private String Nombre;
+	private String Seleccion;
+	private double Puntaje;
+	private int TarjetasAmarillas;
+	private int TarjetasRojas;
 	
+
 	public Jugador(String Nombre, String Seleccion, double Puntaje,
-			TipoJugador Posicion, int TarjetasAmarillas, int TarjetasRojas) {
-		this.Nombre = Nombre;
-		this.Seleccion = Seleccion;
-		this.Puntaje = Puntaje;
-		this.Posicion = Posicion;
-		this.TarjetasAmarillas = TarjetasAmarillas;
-		this.TarjetasRojas = TarjetasRojas;
+			int TarjetasAmarillas, int TarjetasRojas) {
+		this.setNombre(Nombre);
+		this.setSeleccion(Seleccion);
+		this.setPuntaje(Puntaje);
+		this.setTarjetasAmarillas(TarjetasAmarillas);
+		this.setTarjetasRojas(TarjetasRojas);
 	}
 
+
+	public double getPuntaje() {
+		return Puntaje;
+	}
+
+
+	void setPuntaje(double puntaje) {
+		Puntaje = puntaje;
+	}
+
+
+	public String getNombre() {
+		return Nombre;
+	}
+
+
+	void setNombre(String nombre) {
+		Nombre = nombre;
+	}
+
+
+	public String getSeleccion() {
+		return Seleccion;
+	}
+
+
+	void setSeleccion(String seleccion) {
+		Seleccion = seleccion;
+	}
+
+
+	public int getTarjetasAmarillas() {
+		return TarjetasAmarillas;
+	}
+
+
+	void setTarjetasAmarillas(int tarjetasAmarillas) {
+		TarjetasAmarillas = tarjetasAmarillas;
+	}
+
+	
+	public int getTarjetasRojas() {
+		return TarjetasRojas;
+	}
+
+
+	void setTarjetasRojas(int tarjetasRojas) {
+		TarjetasRojas = tarjetasRojas;
+	}
 
 }

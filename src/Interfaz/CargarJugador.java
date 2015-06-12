@@ -10,7 +10,6 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 
 import Logica.Jugador;
-import Logica.TipoJugador;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -117,20 +116,20 @@ public class CargarJugador {
 			public void actionPerformed(ActionEvent arg0) {
 				if (validarDatos()) {
 					try {
-						Jugador jugador = new Jugador(txtNombre.getText(),
-								txtSeleccion.getText(), Double
-										.parseDouble(txtPuntaje.getText()),
-								(TipoJugador) cboPosicion.getSelectedItem(),
-								Integer.parseInt(cboTarjetasAmarillas
-										.getSelectedItem().toString()), Integer
-										.parseInt(cboTarjetasRojas
-												.getSelectedItem().toString()));
+//						Jugador jugador = new Jugador(txtNombre.getText(),
+//								txtSeleccion.getText(), Double
+//										.parseDouble(txtPuntaje.getText()),
+//								(TipoJugador) cboPosicion.getSelectedItem(),
+//								Integer.parseInt(cboTarjetasAmarillas
+//										.getSelectedItem().toString()), Integer
+//										.parseInt(cboTarjetasRojas
+//												.getSelectedItem().toString()));
 
 						FileOutputStream fos = new FileOutputStream(
 								"C:/jugadores.txt");
 						ObjectOutputStream out = new ObjectOutputStream(fos);
 
-						out.writeObject(jugador);
+//						out.writeObject(jugador);
 						out.close();
 
 						lblMensaje.setText("");
@@ -174,10 +173,10 @@ public class CargarJugador {
 	}
 
 	private void bindPosicion() {
-		this.cboPosicion.addItem(TipoJugador.Arquero);
-		this.cboPosicion.addItem(TipoJugador.Defensor);
-		this.cboPosicion.addItem(TipoJugador.Mediocampista);
-		this.cboPosicion.addItem(TipoJugador.Delantero);
+//		this.cboPosicion.addItem(TipoJugador.Arquero);
+//		this.cboPosicion.addItem(TipoJugador.Defensor);
+//		this.cboPosicion.addItem(TipoJugador.Mediocampista);
+//		this.cboPosicion.addItem(TipoJugador.Delantero);
 	}
 
 	private boolean validarDatos() {

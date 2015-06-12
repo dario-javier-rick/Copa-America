@@ -1,22 +1,39 @@
 package Logica;
 
-import java.util.ArrayList;
 
 public class Equipo {
-
-	private ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
-	private final int cantidadMaxima = 11;
 	
+	Jugador[] jugadores;
+	private double puntajeTotal;
+
+	// Constructor vacío requerido en la lógica
 	public Equipo()
 	{
-		
+		setPuntajeTotal(0);
 	}
 	
-	public void agregarJugador(Jugador jugador) throws Exception
+	
+	public Equipo(Jugador[] jugadores)
 	{
-		if (jugadores.size() < cantidadMaxima)
-			this.jugadores.add(jugador);
-		else
-			throw new Exception("El equipo está completo");
+		this.jugadores = jugadores;
+		for (Jugador jugador:jugadores)
+		{
+			setPuntajeTotal(puntajeTotal + jugador.getPuntaje());
+		}
 	}
+	
+	public void agregarJugador(Jugador jugador)
+	{
+		jugadores[jugadores.length] = jugador;
+		setPuntajeTotal(puntajeTotal + jugador.getPuntaje());
+	}
+
+	public double getPuntajeTotal() {
+		return puntajeTotal;
+	}
+
+	void setPuntajeTotal(double puntajeTotal) {
+		this.puntajeTotal = puntajeTotal;
+	}
+
 }
