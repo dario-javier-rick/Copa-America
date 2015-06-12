@@ -9,13 +9,14 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 
-import Logica.Jugador;
+import Logica.Arquero;
+import Logica.Defensor;
+import Logica.Delantero;
+import Logica.Mediocampista;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
 
 public class CargarJugador {
 
@@ -23,9 +24,9 @@ public class CargarJugador {
 	private JTextField txtNombre;
 	private JTextField txtSeleccion;
 	private JTextField txtPuntaje;
-	JComboBox cboPosicion = new JComboBox();
-	JComboBox cboTarjetasAmarillas = new JComboBox();
-	JComboBox cboTarjetasRojas = new JComboBox();
+	JComboBox<TipoJugador> cboPosicion = new JComboBox<TipoJugador>();
+	JComboBox<Integer> cboTarjetasAmarillas = new JComboBox<Integer>();
+	JComboBox<Integer> cboTarjetasRojas = new JComboBox<Integer>();
 	JLabel lblMensaje = new JLabel("");
 
 	/**
@@ -116,21 +117,55 @@ public class CargarJugador {
 			public void actionPerformed(ActionEvent arg0) {
 				if (validarDatos()) {
 					try {
-//						Jugador jugador = new Jugador(txtNombre.getText(),
-//								txtSeleccion.getText(), Double
-//										.parseDouble(txtPuntaje.getText()),
-//								(TipoJugador) cboPosicion.getSelectedItem(),
-//								Integer.parseInt(cboTarjetasAmarillas
-//										.getSelectedItem().toString()), Integer
-//										.parseInt(cboTarjetasRojas
-//												.getSelectedItem().toString()));
+						switch ((TipoJugador) cboPosicion.getSelectedItem()) {
+						case Arquero:
+							Arquero arquero = new Arquero(txtNombre.getText(),
+									txtSeleccion.getText(), Double
+											.parseDouble(txtPuntaje.getText()),
+									Integer.parseInt(cboTarjetasAmarillas
+											.getSelectedItem().toString()),
+									Integer.parseInt(cboTarjetasRojas
+											.getSelectedItem().toString()));
+							arquero.persistir();
+							break;
+							
+						case Defensor:
+							Defensor defensor = new Defensor(txtNombre.getText(),
+									txtSeleccion.getText(), Double
+											.parseDouble(txtPuntaje.getText()),
+									Integer.parseInt(cboTarjetasAmarillas
+											.getSelectedItem().toString()),
+									Integer.parseInt(cboTarjetasRojas
+											.getSelectedItem().toString()));
+//							defensor.persistir();
+							break;
+							
+						case Mediocampista:
+							Mediocampista mediocampista = new Mediocampista(txtNombre.getText(),
+									txtSeleccion.getText(), Double
+											.parseDouble(txtPuntaje.getText()),
+									Integer.parseInt(cboTarjetasAmarillas
+											.getSelectedItem().toString()),
+									Integer.parseInt(cboTarjetasRojas
+											.getSelectedItem().toString()));
+//							mediocampista.persistir();
+							break;
+							
+						case Delantero:
+							Delantero delantero = new Delantero(txtNombre.getText(),
+									txtSeleccion.getText(), Double
+											.parseDouble(txtPuntaje.getText()),
+									Integer.parseInt(cboTarjetasAmarillas
+											.getSelectedItem().toString()),
+									Integer.parseInt(cboTarjetasRojas
+											.getSelectedItem().toString()));
+//							delantero.persistir();
+							break;
 
-						FileOutputStream fos = new FileOutputStream(
-								"C:/jugadores.txt");
-						ObjectOutputStream out = new ObjectOutputStream(fos);
+						default:
+							break;
+						}
 
-//						out.writeObject(jugador);
-						out.close();
 
 						lblMensaje.setText("");
 						JOptionPane.showMessageDialog(null, "Jugador cargado!");
@@ -145,7 +180,7 @@ public class CargarJugador {
 		});
 		btnCargar.setBounds(335, 232, 89, 23);
 		frame.getContentPane().add(btnCargar);
-		
+
 		JButton btnCerrar = new JButton("Cerrar");
 		btnCerrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -173,10 +208,10 @@ public class CargarJugador {
 	}
 
 	private void bindPosicion() {
-//		this.cboPosicion.addItem(TipoJugador.Arquero);
-//		this.cboPosicion.addItem(TipoJugador.Defensor);
-//		this.cboPosicion.addItem(TipoJugador.Mediocampista);
-//		this.cboPosicion.addItem(TipoJugador.Delantero);
+		this.cboPosicion.addItem(TipoJugador.Arquero);
+		this.cboPosicion.addItem(TipoJugador.Defensor);
+		this.cboPosicion.addItem(TipoJugador.Mediocampista);
+		this.cboPosicion.addItem(TipoJugador.Delantero);
 	}
 
 	private boolean validarDatos() {

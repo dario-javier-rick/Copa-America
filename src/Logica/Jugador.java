@@ -1,5 +1,6 @@
 package Logica;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 public abstract class Jugador implements Serializable {
@@ -24,6 +25,7 @@ public abstract class Jugador implements Serializable {
 		this.setTarjetasRojas(TarjetasRojas);
 	}
 
+	abstract void persistir() throws IOException;
 
 	public double getPuntaje() {
 		return Puntaje;

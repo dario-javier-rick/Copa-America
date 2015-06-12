@@ -36,4 +36,12 @@ public class Equipo {
 		this.puntajeTotal = puntajeTotal;
 	}
 
+
+	public void agregarJugadores(Arquero[] arqueros, Defensor[] defensores,
+			Mediocampista[] mediocampistas, Delantero[] delanteros,
+			int iteraciones) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
