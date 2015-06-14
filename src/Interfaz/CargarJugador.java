@@ -11,6 +11,7 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.border.EmptyBorder;
 
+import Logica.TipoJugador;
 import Recursos.Fondo;
 
 import java.awt.event.ActionListener;
@@ -205,7 +206,7 @@ public class CargarJugador extends JFrame {
 	}
 
 	private void bindTarjetasRojas() {
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 11; i++) {
 			this.cboTarjetasRojas.addItem(i);
 		}
 	}

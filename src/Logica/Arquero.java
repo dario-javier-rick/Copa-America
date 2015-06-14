@@ -13,7 +13,7 @@ public class Arquero extends Jugador {
 
 	public Arquero(String Nombre, String Seleccion, double Puntaje,
 			int TarjetasAmarillas, int TarjetasRojas) {
-		super(Nombre, Seleccion, Puntaje, TarjetasAmarillas, TarjetasAmarillas);
+		super(Nombre, Seleccion, Puntaje, TarjetasAmarillas, TarjetasRojas);
 	}
 	
 	@Override public void persistir() throws IOException
