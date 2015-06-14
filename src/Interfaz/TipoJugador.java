@@ -1,6 +1,6 @@
 package Interfaz;
 
 public enum TipoJugador {
-	Arquero, Defensor, Mediocampista, Delantero
+	Arquero, Defensor, Mediocampista, Delantero;
 
 }

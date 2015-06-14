@@ -1,5 +1,6 @@
 package Interfaz;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -9,17 +10,21 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JList;
+import javax.swing.border.EmptyBorder;
 
 import Logica.Jugador;
+import Recursos.Fondo;
 
 import java.awt.Font;
 import java.util.ArrayList;
+import java.awt.Toolkit;
 
-public class Principal {
+public class Principal extends JFrame{
 
 	private JFrame frame;
 	private ArrayList<Jugador> listaJugadores;
 
+	public static Principal frame1 = new Principal();
 	/**
 	 * Launch the application.
 	 */
@@ -27,8 +32,7 @@ public class Principal {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Principal window = new Principal();
-					window.frame.setVisible(true);
+					frame1.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -40,6 +44,8 @@ public class Principal {
 	 * Create the application.
 	 */
 	public Principal() {
+		setTitle("Copa Am\u00E9rica 2015");
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Karen\\Desktop\\copa-icon.png"));
 		initialize();
 	}
 
@@ -47,10 +53,14 @@ public class Principal {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 552, 414);
+		Fondo p = new Fondo();
+		p.setBackground(Color.BLACK);
+		p.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(p);
+		p.setLayout(null);
+		
 		
 		JButton btnCargarJugador = new JButton("Cargar Jugador");
 		btnCargarJugador.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -59,20 +69,20 @@ public class Principal {
 				CargarJugador.main(null);
 			}
 		});
-		btnCargarJugador.setBounds(32, 228, 131, 23);
-		frame.getContentPane().add(btnCargarJugador);
+		btnCargarJugador.setBounds(98, 232, 138, 41);
+		p.add(btnCargarJugador);
 		
 		JButton btnGenerarEquipoIdeal = new JButton("Generar equipo ideal");
 		btnGenerarEquipoIdeal.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnGenerarEquipoIdeal.setBounds(293, 228, 131, 23);
-		frame.getContentPane().add(btnGenerarEquipoIdeal);
+		btnGenerarEquipoIdeal.setBounds(295, 232, 138, 41);
+		p.add(btnGenerarEquipoIdeal);
 		
 		JList listJugadores = new JList();
 		listJugadores.setBounds(32, 197, 131, -181);
-		frame.getContentPane().add(listJugadores);
+		p.add(listJugadores);
 		
 		JList listEquipoIdeal = new JList();
 		listEquipoIdeal.setBounds(270, 197, 131, -181);
-		frame.getContentPane().add(listEquipoIdeal);
+		p.add(listEquipoIdeal);
 	}
 }

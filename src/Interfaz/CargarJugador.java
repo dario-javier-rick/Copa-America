@@ -1,5 +1,6 @@
 package Interfaz;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -8,26 +9,32 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+import javax.swing.border.EmptyBorder;
 
-import Logica.Arquero;
-import Logica.Defensor;
-import Logica.Delantero;
-import Logica.Mediocampista;
+import Recursos.Fondo;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.awt.Font;
+import java.awt.Toolkit;
 
-public class CargarJugador {
+public class CargarJugador extends JFrame {
 
+	public static CargarJugador frame1 = new CargarJugador();
 	private JFrame frame;
 	private JTextField txtNombre;
 	private JTextField txtSeleccion;
 	private JTextField txtPuntaje;
-	JComboBox<TipoJugador> cboPosicion = new JComboBox<TipoJugador>();
-	JComboBox<Integer> cboTarjetasAmarillas = new JComboBox<Integer>();
-	JComboBox<Integer> cboTarjetasRojas = new JComboBox<Integer>();
+	JComboBox cboPosicion = new JComboBox();
+	JComboBox cboTarjetasAmarillas = new JComboBox();
+	JComboBox cboTarjetasRojas = new JComboBox();
 	JLabel lblMensaje = new JLabel("");
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -36,8 +43,8 @@ public class CargarJugador {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CargarJugador window = new CargarJugador();
-					window.frame.setVisible(true);
+					//Jugador frame1 = new Jugador();
+					frame1.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -49,6 +56,8 @@ public class CargarJugador {
 	 * Create the application.
 	 */
 	public CargarJugador() {
+		setTitle("Cargar nuevo jugador");
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Karen\\Desktop\\copa-icon.png"));
 		initialize();
 	}
 
@@ -56,116 +65,106 @@ public class CargarJugador {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 552, 414);
+		Fondo p = new Fondo();
+		p.setBackground(Color.BLACK);
+		p.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(p);
+		p.setLayout(null);
+		
 		JLabel lblNombre = new JLabel("Nombre del jugador:");
-		lblNombre.setBounds(10, 35, 108, 22);
-		frame.getContentPane().add(lblNombre);
-
+		lblNombre.setForeground(Color.WHITE);
+		lblNombre.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNombre.setBounds(56, 74, 200, 22);
+		p.add(lblNombre);
+		
 		JLabel lblSeleccion = new JLabel("Selecci\u00F3n:");
-		lblSeleccion.setBounds(10, 68, 108, 22);
-		frame.getContentPane().add(lblSeleccion);
-
+		lblSeleccion.setForeground(Color.WHITE);
+		lblSeleccion.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblSeleccion.setBounds(56, 107, 108, 22);
+		p.add(lblSeleccion);
+		
 		JLabel lblPosicion = new JLabel("Posici\u00F3n:");
-		lblPosicion.setBounds(10, 100, 108, 22);
-		frame.getContentPane().add(lblPosicion);
-
+		lblPosicion.setForeground(Color.WHITE);
+		lblPosicion.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblPosicion.setBounds(56, 139, 108, 22);
+		p.add(lblPosicion);
+		
 		JLabel lblPuntaje = new JLabel("Puntaje:");
-		lblPuntaje.setBounds(10, 133, 108, 22);
-		frame.getContentPane().add(lblPuntaje);
-
+		lblPuntaje.setForeground(Color.WHITE);
+		lblPuntaje.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblPuntaje.setBounds(56, 172, 108, 22);
+		p.add(lblPuntaje);
+		
 		JLabel lblTarjetasAmarillas = new JLabel("Tarjetas Amarillas:");
-		lblTarjetasAmarillas.setBounds(10, 166, 108, 22);
-		frame.getContentPane().add(lblTarjetasAmarillas);
+		lblTarjetasAmarillas.setForeground(Color.WHITE);
+		lblTarjetasAmarillas.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblTarjetasAmarillas.setBounds(56, 205, 142, 22);
+		p.add(lblTarjetasAmarillas);
 
 		JLabel lblTarjetasRojas = new JLabel("Tarjetas rojas:");
-		lblTarjetasRojas.setBounds(10, 199, 108, 22);
-		frame.getContentPane().add(lblTarjetasRojas);
-
+		lblTarjetasRojas.setForeground(Color.WHITE);
+		lblTarjetasRojas.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblTarjetasRojas.setBounds(56, 238, 108, 22);
+		p.add(lblTarjetasRojas);
+		
+		
 		txtNombre = new JTextField();
-		txtNombre.setBounds(145, 36, 135, 22);
-		frame.getContentPane().add(txtNombre);
+		txtNombre.setBackground(Color.WHITE);
+		txtNombre.setBounds(266, 75, 135, 22);
+		p.add(txtNombre);
 		txtNombre.setColumns(10);
 
 		txtSeleccion = new JTextField();
-		txtSeleccion.setBounds(145, 69, 135, 21);
-		frame.getContentPane().add(txtSeleccion);
+		txtSeleccion.setBackground(Color.WHITE);
+		txtSeleccion.setBounds(266, 108, 135, 21);
+		p.add(txtSeleccion);
 		txtSeleccion.setColumns(10);
+		cboPosicion.setBackground(Color.WHITE);
 
-		cboPosicion.setBounds(145, 101, 135, 21);
-		frame.getContentPane().add(cboPosicion);
-
+		cboPosicion.setBounds(266, 140, 135, 21);
+		p.add(cboPosicion);
+		
 		txtPuntaje = new JTextField();
-		txtPuntaje.setBounds(145, 134, 135, 21);
-		frame.getContentPane().add(txtPuntaje);
+		txtPuntaje.setBackground(Color.WHITE);
+		txtPuntaje.setBounds(266, 173, 135, 21);
+		p.add(txtPuntaje);
 		txtPuntaje.setColumns(10);
+		cboTarjetasAmarillas.setBackground(Color.WHITE);
 
-		cboTarjetasAmarillas.setBounds(145, 167, 135, 22);
-		frame.getContentPane().add(cboTarjetasAmarillas);
+		cboTarjetasAmarillas.setBounds(266, 206, 135, 22);
+		p.add(cboTarjetasAmarillas);
+		cboTarjetasRojas.setBackground(Color.WHITE);
 
-		cboTarjetasRojas.setBounds(145, 200, 135, 21);
-		frame.getContentPane().add(cboTarjetasRojas);
+		cboTarjetasRojas.setBounds(266, 239, 135, 21);
+		p.add(cboTarjetasRojas);
+		lblMensaje.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblMensaje.setForeground(Color.WHITE);
 
-		lblMensaje.setBounds(10, 232, 270, 19);
-		frame.getContentPane().add(lblMensaje);
+		lblMensaje.setBounds(39, 304, 319, 19);
+		p.add(lblMensaje);
 
 		JButton btnCargar = new JButton("Cargar");
 		btnCargar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (validarDatos()) {
 					try {
-						switch ((TipoJugador) cboPosicion.getSelectedItem()) {
-						case Arquero:
-							Arquero arquero = new Arquero(txtNombre.getText(),
-									txtSeleccion.getText(), Double
-											.parseDouble(txtPuntaje.getText()),
-									Integer.parseInt(cboTarjetasAmarillas
-											.getSelectedItem().toString()),
-									Integer.parseInt(cboTarjetasRojas
-											.getSelectedItem().toString()));
-							arquero.persistir();
-							break;
-							
-						case Defensor:
-							Defensor defensor = new Defensor(txtNombre.getText(),
-									txtSeleccion.getText(), Double
-											.parseDouble(txtPuntaje.getText()),
-									Integer.parseInt(cboTarjetasAmarillas
-											.getSelectedItem().toString()),
-									Integer.parseInt(cboTarjetasRojas
-											.getSelectedItem().toString()));
-//							defensor.persistir();
-							break;
-							
-						case Mediocampista:
-							Mediocampista mediocampista = new Mediocampista(txtNombre.getText(),
-									txtSeleccion.getText(), Double
-											.parseDouble(txtPuntaje.getText()),
-									Integer.parseInt(cboTarjetasAmarillas
-											.getSelectedItem().toString()),
-									Integer.parseInt(cboTarjetasRojas
-											.getSelectedItem().toString()));
-//							mediocampista.persistir();
-							break;
-							
-						case Delantero:
-							Delantero delantero = new Delantero(txtNombre.getText(),
-									txtSeleccion.getText(), Double
-											.parseDouble(txtPuntaje.getText()),
-									Integer.parseInt(cboTarjetasAmarillas
-											.getSelectedItem().toString()),
-									Integer.parseInt(cboTarjetasRojas
-											.getSelectedItem().toString()));
-//							delantero.persistir();
-							break;
+//						Jugador jugador = new Jugador(txtNombre.getText(),
+//								txtSeleccion.getText(), Double
+//										.parseDouble(txtPuntaje.getText()),
+//								(TipoJugador) cboPosicion.getSelectedItem(),
+//								Integer.parseInt(cboTarjetasAmarillas
+//										.getSelectedItem().toString()), Integer
+//										.parseInt(cboTarjetasRojas
+//												.getSelectedItem().toString()));
 
-						default:
-							break;
-						}
+						FileOutputStream fos = new FileOutputStream(
+								"C:/jugadores.txt");
+						ObjectOutputStream out = new ObjectOutputStream(fos);
 
+//						out.writeObject(jugador);
+						out.close();
 
 						lblMensaje.setText("");
 						JOptionPane.showMessageDialog(null, "Jugador cargado!");
@@ -177,18 +176,28 @@ public class CargarJugador {
 
 				}
 			}
+
 		});
-		btnCargar.setBounds(335, 232, 89, 23);
-		frame.getContentPane().add(btnCargar);
+		
+		btnCargar.setBounds(437, 300, 89, 23);
+		p.add(btnCargar);
+		
 
 		JButton btnCerrar = new JButton("Cerrar");
+		btnCerrar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				dispose();
+			}
+		});
+
 		btnCerrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 			}
 		});
-		btnCerrar.setBounds(335, 199, 89, 23);
-		frame.getContentPane().add(btnCerrar);
+		btnCerrar.setBounds(437, 342, 89, 23);
+		p.add(btnCerrar);
 
 		bindPosicion();
 		bindTarjetasAmarillas();
@@ -202,17 +211,19 @@ public class CargarJugador {
 	}
 
 	private void bindTarjetasAmarillas() {
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 6; i++) {
 			this.cboTarjetasAmarillas.addItem(i);
 		}
 	}
 
 	private void bindPosicion() {
+		this.cboPosicion.addItem("...");
 		this.cboPosicion.addItem(TipoJugador.Arquero);
 		this.cboPosicion.addItem(TipoJugador.Defensor);
-		this.cboPosicion.addItem(TipoJugador.Mediocampista);
 		this.cboPosicion.addItem(TipoJugador.Delantero);
+		this.cboPosicion.addItem(TipoJugador.Mediocampista);
 	}
+
 
 	private boolean validarDatos() {
 		if (this.txtNombre.getText().equals("")) {
@@ -235,4 +246,13 @@ public class CargarJugador {
 		}
 		return true;
 	}
+
+
+		
+		
+		
+		
+		
+
 }
+
