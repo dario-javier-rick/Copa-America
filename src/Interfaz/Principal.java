@@ -21,7 +21,13 @@ import java.awt.Toolkit;
 
 public class Principal extends JFrame{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9154476364621162975L;
+	@SuppressWarnings("unused")
 	private JFrame frame;
+	@SuppressWarnings("unused")
 	private ArrayList<Jugador> listaJugadores;
 
 	public static Principal frame1 = new Principal();
@@ -52,6 +58,7 @@ public class Principal extends JFrame{
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	@SuppressWarnings("rawtypes")
 	private void initialize() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 552, 414);

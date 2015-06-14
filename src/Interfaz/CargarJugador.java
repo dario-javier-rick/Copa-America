@@ -26,15 +26,23 @@ import java.awt.Toolkit;
 
 public class CargarJugador extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6472114933233375254L;
 	public static CargarJugador frame1 = new CargarJugador();
 	private JFrame frame;
 	private JTextField txtNombre;
 	private JTextField txtSeleccion;
 	private JTextField txtPuntaje;
+	@SuppressWarnings("rawtypes")
 	JComboBox cboPosicion = new JComboBox();
+	@SuppressWarnings("rawtypes")
 	JComboBox cboTarjetasAmarillas = new JComboBox();
+	@SuppressWarnings("rawtypes")
 	JComboBox cboTarjetasRojas = new JComboBox();
 	JLabel lblMensaje = new JLabel("");
+	@SuppressWarnings("unused")
 	private JTextField textField;
 
 	/**
@@ -205,18 +213,21 @@ public class CargarJugador extends JFrame {
 		bindTarjetasRojas();
 	}
 
+	@SuppressWarnings("unchecked")
 	private void bindTarjetasRojas() {
 		for (int i = 0; i < 11; i++) {
 			this.cboTarjetasRojas.addItem(i);
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	private void bindTarjetasAmarillas() {
 		for (int i = 0; i < 6; i++) {
 			this.cboTarjetasAmarillas.addItem(i);
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	private void bindPosicion() {
 		this.cboPosicion.addItem("...");
 		this.cboPosicion.addItem(TipoJugador.Arquero);
