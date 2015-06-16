@@ -2,6 +2,7 @@ package Logica;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public abstract class Jugador implements Serializable {
 
@@ -26,6 +27,7 @@ public abstract class Jugador implements Serializable {
 	}
 
 	abstract void persistir() throws IOException;
+//	abstract ArrayList<Jugador> getJugadores() throws IOException;
 
 	public double getPuntaje() {
 		return Puntaje;

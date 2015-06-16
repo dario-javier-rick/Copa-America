@@ -10,6 +10,8 @@ public class Defensor extends Jugador{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	String directorio = System.getProperty("user.home")
+			+ "/Desktop/defensores.txt";
 
 	public Defensor(String Nombre, String Seleccion, double Puntaje,
 			int TarjetasAmarillas, int TarjetasRojas) 
@@ -18,15 +20,18 @@ public class Defensor extends Jugador{
 	}
 
 	@Override
-	void persistir() throws IOException {
-		FileOutputStream fos = new FileOutputStream(System
-				.getProperty("user.home")
-				+ "/Desktop/defensores.txt");
+	public void persistir() throws IOException {
+		FileOutputStream fos = new FileOutputStream(directorio);
 		ObjectOutputStream out = new ObjectOutputStream(fos);
 
 		out.writeObject(this);
 		out.close();
 
+	}
+
+	void getJugadores() throws IOException {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

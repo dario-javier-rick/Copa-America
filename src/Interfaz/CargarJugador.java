@@ -11,6 +11,10 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.border.EmptyBorder;
 
+import Logica.Arquero;
+import Logica.Defensor;
+import Logica.Delantero;
+import Logica.Mediocampista;
 import Logica.TipoJugador;
 import Recursos.Fondo;
 
@@ -18,7 +22,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.awt.Font;
@@ -159,14 +162,54 @@ public class CargarJugador extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				if (validarDatos()) {
 					try {
-//						Jugador jugador = new Jugador(txtNombre.getText(),
-//								txtSeleccion.getText(), Double
-//										.parseDouble(txtPuntaje.getText()),
-//								(TipoJugador) cboPosicion.getSelectedItem(),
-//								Integer.parseInt(cboTarjetasAmarillas
-//										.getSelectedItem().toString()), Integer
-//										.parseInt(cboTarjetasRojas
-//												.getSelectedItem().toString()));
+						switch ((TipoJugador) cboPosicion.getSelectedItem()) {
+						case Arquero:
+							Arquero arquero = new Arquero(txtNombre.getText(),
+									txtSeleccion.getText(), Double
+											.parseDouble(txtPuntaje.getText()),
+									Integer.parseInt(cboTarjetasAmarillas
+											.getSelectedItem().toString()),
+									Integer.parseInt(cboTarjetasRojas
+											.getSelectedItem().toString()));
+							arquero.persistir();
+							break;
+							
+						case Defensor:
+							Defensor defensor = new Defensor(txtNombre.getText(),
+									txtSeleccion.getText(), Double
+											.parseDouble(txtPuntaje.getText()),
+									Integer.parseInt(cboTarjetasAmarillas
+											.getSelectedItem().toString()),
+									Integer.parseInt(cboTarjetasRojas
+											.getSelectedItem().toString()));
+							defensor.persistir();
+							break;
+							
+						case Mediocampista:
+							Mediocampista mediocampista = new Mediocampista(txtNombre.getText(),
+									txtSeleccion.getText(), Double
+											.parseDouble(txtPuntaje.getText()),
+									Integer.parseInt(cboTarjetasAmarillas
+											.getSelectedItem().toString()),
+									Integer.parseInt(cboTarjetasRojas
+											.getSelectedItem().toString()));
+							mediocampista.persistir();
+							break;
+							
+						case Delantero:
+							Delantero delantero = new Delantero(txtNombre.getText(),
+									txtSeleccion.getText(), Double
+											.parseDouble(txtPuntaje.getText()),
+									Integer.parseInt(cboTarjetasAmarillas
+											.getSelectedItem().toString()),
+									Integer.parseInt(cboTarjetasRojas
+											.getSelectedItem().toString()));
+							delantero.persistir();
+							break;
+
+						default:
+							break;
+						}
 
 						FileOutputStream fos = new FileOutputStream(
 								"C:/jugadores.txt");

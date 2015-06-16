@@ -80,6 +80,11 @@ public class Principal extends JFrame{
 		p.add(btnCargarJugador);
 		
 		JButton btnGenerarEquipoIdeal = new JButton("Generar equipo ideal");
+		btnGenerarEquipoIdeal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GenerarEquipo.main(null);
+			}
+		});
 		btnGenerarEquipoIdeal.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnGenerarEquipoIdeal.setBounds(295, 232, 138, 41);
 		p.add(btnGenerarEquipoIdeal);
