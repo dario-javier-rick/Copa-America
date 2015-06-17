@@ -36,8 +36,10 @@ public class CargarJugador extends JFrame {
 	public static CargarJugador frame1 = new CargarJugador();
 	private JFrame frame;
 	private JTextField txtNombre;
-	private JTextField txtSeleccion;
 	private JTextField txtPuntaje;
+	
+	@SuppressWarnings("rawtypes")
+	JComboBox cboSeleccion = new JComboBox();
 	@SuppressWarnings("rawtypes")
 	JComboBox cboPosicion = new JComboBox();
 	@SuppressWarnings("rawtypes")
@@ -69,7 +71,7 @@ public class CargarJugador extends JFrame {
 	 */
 	public CargarJugador() {
 		setTitle("Cargar nuevo jugador");
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Karen\\Desktop\\copa-icon.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(CargarJugador.class.getResource("/Recursos/copa-icon.png")));
 		initialize();
 	}
 
@@ -127,12 +129,6 @@ public class CargarJugador extends JFrame {
 		txtNombre.setBounds(266, 75, 135, 22);
 		p.add(txtNombre);
 		txtNombre.setColumns(10);
-
-		txtSeleccion = new JTextField();
-		txtSeleccion.setBackground(Color.WHITE);
-		txtSeleccion.setBounds(266, 108, 135, 21);
-		p.add(txtSeleccion);
-		txtSeleccion.setColumns(10);
 		cboPosicion.setBackground(Color.WHITE);
 
 		cboPosicion.setBounds(266, 140, 135, 21);
@@ -165,7 +161,7 @@ public class CargarJugador extends JFrame {
 						switch ((TipoJugador) cboPosicion.getSelectedItem()) {
 						case Arquero:
 							Arquero arquero = new Arquero(txtNombre.getText(),
-									txtSeleccion.getText(), Double
+									cboSeleccion.getSelectedItem().toString() , Double
 											.parseDouble(txtPuntaje.getText()),
 									Integer.parseInt(cboTarjetasAmarillas
 											.getSelectedItem().toString()),
@@ -176,7 +172,7 @@ public class CargarJugador extends JFrame {
 							
 						case Defensor:
 							Defensor defensor = new Defensor(txtNombre.getText(),
-									txtSeleccion.getText(), Double
+									cboSeleccion.getSelectedItem().toString(), Double
 											.parseDouble(txtPuntaje.getText()),
 									Integer.parseInt(cboTarjetasAmarillas
 											.getSelectedItem().toString()),
@@ -187,7 +183,7 @@ public class CargarJugador extends JFrame {
 							
 						case Mediocampista:
 							Mediocampista mediocampista = new Mediocampista(txtNombre.getText(),
-									txtSeleccion.getText(), Double
+									cboSeleccion.getSelectedItem().toString(), Double
 											.parseDouble(txtPuntaje.getText()),
 									Integer.parseInt(cboTarjetasAmarillas
 											.getSelectedItem().toString()),
@@ -198,7 +194,7 @@ public class CargarJugador extends JFrame {
 							
 						case Delantero:
 							Delantero delantero = new Delantero(txtNombre.getText(),
-									txtSeleccion.getText(), Double
+									cboSeleccion.getSelectedItem().toString(), Double
 											.parseDouble(txtPuntaje.getText()),
 									Integer.parseInt(cboTarjetasAmarillas
 											.getSelectedItem().toString()),
@@ -215,7 +211,7 @@ public class CargarJugador extends JFrame {
 								"C:/jugadores.txt");
 						ObjectOutputStream out = new ObjectOutputStream(fos);
 
-//						out.writeObject(jugador);
+						out.writeObject(this);
 						out.close();
 
 						lblMensaje.setText("");
@@ -250,10 +246,32 @@ public class CargarJugador extends JFrame {
 		});
 		btnCerrar.setBounds(437, 342, 89, 23);
 		p.add(btnCerrar);
+		cboSeleccion.setMaximumRowCount(12);
+		cboSeleccion.setBackground(Color.WHITE);
+		cboSeleccion.setBounds(266, 110, 135, 21);
+		p.add(cboSeleccion);
 
 		bindPosicion();
 		bindTarjetasAmarillas();
 		bindTarjetasRojas();
+		bindSeleccion();
+	}
+
+	@SuppressWarnings("unchecked")
+	private void bindSeleccion() {
+		this.cboSeleccion.addItem("...");
+		this.cboSeleccion.addItem("Argentina");
+		this.cboSeleccion.addItem("Brasil");
+		this.cboSeleccion.addItem("Chile");
+		this.cboSeleccion.addItem("Colombia");
+		this.cboSeleccion.addItem("Ecuador");
+		this.cboSeleccion.addItem("Jamaica");
+		this.cboSeleccion.addItem("Mexico");
+		this.cboSeleccion.addItem("Paraguay");
+		this.cboSeleccion.addItem("Peru");
+		this.cboSeleccion.addItem("Uruguay");
+		this.cboSeleccion.addItem("Venezuela");
+		
 	}
 
 	@SuppressWarnings("unchecked")
@@ -285,8 +303,12 @@ public class CargarJugador extends JFrame {
 			this.lblMensaje.setText("El nombre del jugador se encuentra vacío");
 			return false;
 		}
-		if (this.txtSeleccion.getText().equals("")) {
+		if (this.cboSeleccion.getSelectedItem().equals("...")) {
 			this.lblMensaje.setText("El campo selección se encuentra vacío");
+			return false;
+		}
+		if (this.cboPosicion.getSelectedItem().equals("...")) {
+			this.lblMensaje.setText("El campo posición se encuentra vacío");
 			return false;
 		}
 		if (this.txtPuntaje.getText().equals("")) {
@@ -301,13 +323,5 @@ public class CargarJugador extends JFrame {
 		}
 		return true;
 	}
-
-
-		
-		
-		
-		
-		
-
 }
 

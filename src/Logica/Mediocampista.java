@@ -3,8 +3,9 @@ package Logica;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
-public class Mediocampista extends Jugador {
+public class Mediocampista extends Jugador{
 	
 	/**
 	 * 
@@ -21,9 +22,10 @@ public class Mediocampista extends Jugador {
 	@Override
 	public void persistir() throws IOException {
 		FileOutputStream fos = new FileOutputStream(directorio);
+		toString();
 		ObjectOutputStream out = new ObjectOutputStream(fos);
 
-		out.writeObject(this);
+		out.writeObject(this.toString());
 		out.close();
 
 		

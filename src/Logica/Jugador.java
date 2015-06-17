@@ -10,6 +10,7 @@ public abstract class Jugador implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
 	private String Nombre;
 	private String Seleccion;
 	private double Puntaje;
@@ -30,52 +31,60 @@ public abstract class Jugador implements Serializable {
 //	abstract ArrayList<Jugador> getJugadores() throws IOException;
 
 	public double getPuntaje() {
-		return Puntaje;
+		return this.Puntaje;
 	}
 
 
 	void setPuntaje(double puntaje) {
-		Puntaje = puntaje;
+		this.Puntaje = puntaje;
 	}
 
 
 	public String getNombre() {
-		return Nombre;
+		return this.Nombre;
 	}
 
 
 	void setNombre(String nombre) {
-		Nombre = nombre;
+		this.Nombre = nombre;
 	}
 
 
 	public String getSeleccion() {
-		return Seleccion;
+		return this.Seleccion;
 	}
 
 
 	void setSeleccion(String seleccion) {
-		Seleccion = seleccion;
+		this.Seleccion = seleccion;
 	}
 
 
 	public int getTarjetasAmarillas() {
-		return TarjetasAmarillas;
+		return this.TarjetasAmarillas;
 	}
 
 
 	void setTarjetasAmarillas(int tarjetasAmarillas) {
-		TarjetasAmarillas = tarjetasAmarillas;
+		this.TarjetasAmarillas = tarjetasAmarillas;
 	}
 
 	
 	public int getTarjetasRojas() {
-		return TarjetasRojas;
+		return this.TarjetasRojas;
 	}
-
 
 	void setTarjetasRojas(int tarjetasRojas) {
-		TarjetasRojas = tarjetasRojas;
+		this.TarjetasRojas = tarjetasRojas;
 	}
 
+
+	@Override
+	public String toString() {
+		return "Nombre del jugador: \r\n" + this.getNombre().toString() + ", Seleccion: \r\n" + this.getSeleccion().toString()
+				+ ", Puntaje: \r\n" + this.getPuntaje() + ", TarjetasAmarillas: \r\n"
+				+ this.getTarjetasAmarillas() + ", TarjetasRojas: \r\n" + this.getTarjetasRojas() ;
+	}
+
+	
 }

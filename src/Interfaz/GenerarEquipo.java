@@ -1,5 +1,6 @@
 package Interfaz;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -7,12 +8,16 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.border.EmptyBorder;
 
 import Logica.Delantero;
 import Logica.Jugador;
+import Recursos.Fondo;
+import java.awt.Toolkit;
 
-public class GenerarEquipo {
+public class GenerarEquipo extends JFrame {
 
+	public static GenerarEquipo frame1 = new GenerarEquipo();
 	private JFrame frame;
 	DefaultListModel<Jugador> listModel = new DefaultListModel<Jugador>();
 	JList<Jugador> listJugadores = new JList<Jugador>(listModel);
@@ -24,8 +29,7 @@ public class GenerarEquipo {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GenerarEquipo window = new GenerarEquipo();
-					window.frame.setVisible(true);
+					frame1.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -37,6 +41,7 @@ public class GenerarEquipo {
 	 * Create the application.
 	 */
 	public GenerarEquipo() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(GenerarEquipo.class.getResource("/Recursos/copa-icon.png")));
 		initialize();
 	}
 
@@ -44,13 +49,16 @@ public class GenerarEquipo {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-
-		listJugadores.setBounds(33, 161, 107, -131);
-		frame.getContentPane().add(listJugadores);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 552, 414);
+		Fondo p = new Fondo();
+		p.setBackground(Color.BLACK);
+		p.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(p);
+		p.setLayout(null);
+		
+		listJugadores.setBounds(33, 181, 106, -151);
+		p.add(listJugadores);
 
 		bindJugadores();
 	}
