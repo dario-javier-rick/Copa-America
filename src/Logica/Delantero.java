@@ -36,12 +36,11 @@ public class Delantero extends Jugador {
 	@Override
 	public void persistir() throws IOException {
 		ArrayList<Delantero> delanteros = new ArrayList<Delantero>();
-		if (verificarExistenciaTXT()) 
+		if (verificarExistenciaTXT())
 			delanteros = getJugadores();
 
-		
 		delanteros.add(this);
-
+		
 		FileOutputStream fos = new FileOutputStream(directorio);
 		ObjectOutputStream out = new ObjectOutputStream(fos);
 
@@ -50,23 +49,19 @@ public class Delantero extends Jugador {
 	}
 
 	@SuppressWarnings("unchecked")
-	public static ArrayList<Delantero> getJugadores() throws IOException {
-		ArrayList<Delantero> jugadores = null;
-		ObjectInputStream objectinputstream = null;
+	public static ArrayList<Delantero> getJugadores() {
+		ArrayList<Delantero> jugadores = new ArrayList<Delantero>();
 		try {
 			FileInputStream streamIn = new FileInputStream(directorio);
-			objectinputstream = new ObjectInputStream(streamIn);
+			ObjectInputStream objectinputstream = new ObjectInputStream(streamIn);
 			jugadores = (ArrayList<Delantero>) objectinputstream.readObject();
-
+			objectinputstream.close();
+		} catch (IOException e) {
+			// Si el archivo no existe, no encuentra jugadores, por lo tanto devuelvo array vacio
+			return jugadores;
 		} catch (Exception e) {
-
 			e.printStackTrace();
-		} finally {
-			if (objectinputstream != null) {
-				objectinputstream.close();
-			}
-		}
-
+		} 
 		return jugadores;
 	}
 

@@ -22,8 +22,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
 import java.awt.Font;
 import java.awt.Toolkit;
 
@@ -33,8 +31,7 @@ public class CargarJugador extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 6472114933233375254L;
-	public static CargarJugador frame1 = new CargarJugador();
-	private JFrame frame;
+	public static CargarJugador frame = new CargarJugador();
 	private JTextField txtNombre;
 	private JTextField txtPuntaje;
 	
@@ -58,7 +55,7 @@ public class CargarJugador extends JFrame {
 			public void run() {
 				try {
 					//Jugador frame1 = new Jugador();
-					frame1.setVisible(true);
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -207,19 +204,12 @@ public class CargarJugador extends JFrame {
 							break;
 						}
 
-						FileOutputStream fos = new FileOutputStream(
-								"C:/jugadores.txt");
-						ObjectOutputStream out = new ObjectOutputStream(fos);
-
-						out.writeObject(this);
-						out.close();
-
-						lblMensaje.setText("");
+						lblMensaje.setText("Jugador cargado!");
 						JOptionPane.showMessageDialog(null, "Jugador cargado!");
-						frame.dispose();
 					} catch (Exception ex) {
 						ex.printStackTrace();
-						lblMensaje.setText(ex.getMessage());
+						lblMensaje.setText("Error: " + ex.getMessage());
+						JOptionPane.showMessageDialog(null, "Hubo un problema al agregar el jugador");
 					}
 
 				}

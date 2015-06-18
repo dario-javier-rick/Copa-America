@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Mediocampista extends Jugador{
 	
@@ -31,7 +32,8 @@ public class Mediocampista extends Jugador{
 		
 	}
 
-	void getJugadores() throws IOException {
+	public static ArrayList<Mediocampista> getJugadores() {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}

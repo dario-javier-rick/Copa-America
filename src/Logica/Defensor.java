@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Defensor extends Jugador{
 	
@@ -30,7 +31,8 @@ public class Defensor extends Jugador{
 
 	}
 
-	void getJugadores() throws IOException {
+	public static ArrayList<Defensor> getJugadores()  {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}
