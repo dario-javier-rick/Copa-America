@@ -1,7 +1,6 @@
 package Logica;
 
-
-public class Equipo {
+public class Equipo{
 	
 	Jugador[] jugadores;
 	private double puntajeTotal;
@@ -43,5 +42,6 @@ public class Equipo {
 		// TODO Auto-generated method stub
 		
 	}
+
 
 }
