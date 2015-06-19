@@ -1,73 +1,35 @@
 package Logica;
 
+import java.util.ArrayList;
+
 public class Logica {
 
-	public static Equipo buscarSolucion(Arquero[] arqueros,
-			Defensor[] defensores, Mediocampista[] mediocampistas,
-			Delantero[] delanteros) {
-
-		// Declaro la mejor solución
-		Equipo mejorSolucion = new Equipo();
-
-		// Iteraciones necesarias como máximo, en caso de testear por fuerza
-		// bruta
-		int iteracionesNecesarias = arqueros.length * defensores.length
-				* mediocampistas.length * delanteros.length;
-
-		int iteraciones = 0;
-
-		while (iteraciones < iteracionesNecesarias) {
-
-			// Declaro una posible soluciòn
-			Equipo posibleSolucion = new Equipo();
-
-			// Le agrego jugadores en las posiciones requeridas
-			posibleSolucion.agregarJugadores(arqueros, defensores,
-					mediocampistas, delanteros, iteraciones);
-
-			// Si la combinación no es válida, corto el algoritmo
-			if (verificarValidez(posibleSolucion)) {
-				if (posibleSolucion.getPuntajeTotal() > mejorSolucion
-						.getPuntajeTotal()) {
-					// Si la combinación que arme es válida y tiene mejor
-					// puntaje,
-					// pasa a ser mejor solución
-					mejorSolucion = posibleSolucion;
-				}
-			}
-			iteraciones++;
-		}
-		return mejorSolucion;
-	}
-
-	private static boolean verificarValidez(Equipo solucion) {
-		// Si hay mas de 2 tarjetas rojas corto, etc
-
-		return true;
-	}
-
-	// ------------------------------------
-	// Por backtracking
+	// Solución implementada con backtracking
+	
 	static void buscarSolucion(Equipo equipo, int jugadores,
-			Arquero[] arqueros, Defensor[] defensores,
-			Mediocampista[] mediocampistas, Delantero[] delanteros) {
+			ArrayList<Arquero> arqueros, ArrayList<Defensor> defensores,
+			ArrayList<Mediocampista> mediocampistas,
+			ArrayList<Delantero> delanteros) {
 
-		if (jugadores == 11)
-			// comparar equipo con el anterior. Guardar en memoria
-			return;
-
-		for (int i = 0; i < arqueros.length + defensores.length
-				+ mediocampistas.length + delanteros.length; ++i) {
-
-			// para cada jugador posible, ver si tiene sentido agregarlo
-			if (verificarValidezBacktrack(equipo)) // Si cumple condiciones
+		if (jugadores == 11) {
+			if (equipo.getPuntajeTotal() > 1) // ?
 			{
-				// agregar al equipo actual un jugador
+				// comparar equipo con el anterior. Guardar en memoria
+			}
+
+			return;
+		}
+
+		for (int i = 0; i < arqueros.size() + defensores.size()
+				+ mediocampistas.size() + delanteros.size(); ++i) {
+			// para cada jugador posible, ver si tiene sentido agregarlo
+			if (verificarValidezBacktrack(equipo)) {
 				equipo.agregarJugador(null);
 
 				buscarSolucion(equipo, jugadores + 1, arqueros, defensores,
 						mediocampistas, delanteros);
-				// Sacar el mismo jugador
+
+				equipo.quitarJugador(null);
 			}
 		}
 	}

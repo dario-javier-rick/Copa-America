@@ -1,30 +1,29 @@
 package Logica;
 
+import java.util.ArrayList;
+
 public class Equipo{
 	
-	Jugador[] jugadores;
+	ArrayList<Jugador> jugadores;
 	private double puntajeTotal;
 
-	// Constructor vacío requerido en la lógica
+	
 	public Equipo()
 	{
 		setPuntajeTotal(0);
 	}
 	
 	
-	public Equipo(Jugador[] jugadores)
-	{
-		this.jugadores = jugadores;
-		for (Jugador jugador:jugadores)
-		{
-			setPuntajeTotal(puntajeTotal + jugador.getPuntaje());
-		}
-	}
-	
 	public void agregarJugador(Jugador jugador)
 	{
-		jugadores[jugadores.length] = jugador;
+		jugadores.add(jugador);
 		setPuntajeTotal(puntajeTotal + jugador.getPuntaje());
+	}
+
+
+	public void quitarJugador(Jugador jugador) {
+		jugadores.remove(jugador);
+		setPuntajeTotal(puntajeTotal - jugador.getPuntaje());
 	}
 
 	public double getPuntajeTotal() {
@@ -36,12 +35,8 @@ public class Equipo{
 	}
 
 
-	public void agregarJugadores(Arquero[] arqueros, Defensor[] defensores,
-			Mediocampista[] mediocampistas, Delantero[] delanteros,
-			int iteraciones) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
 
 
 }
