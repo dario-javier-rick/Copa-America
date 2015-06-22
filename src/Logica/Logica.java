@@ -5,31 +5,30 @@ import java.util.ArrayList;
 public class Logica {
 
 	// Solución implementada con backtracking
-	
-	static void buscarSolucion(Equipo equipo, int jugadores,
-			ArrayList<Arquero> arqueros, ArrayList<Defensor> defensores,
-			ArrayList<Mediocampista> mediocampistas,
-			ArrayList<Delantero> delanteros) {
 
-		if (jugadores == 11) {
-			if (equipo.getPuntajeTotal() > 1) // ?
+	static void buscarSolucion(Equipo equipo, int cantidadJugadores,
+			ArrayList<Jugador> jugadoresTotales) {
+		
+		Equipo posibleSolucion = new Equipo();
+
+		if (cantidadJugadores == 11) {
+			if (equipo.getPuntajeTotal() > posibleSolucion.getPuntajeTotal()) // ?
 			{
 				// comparar equipo con el anterior. Guardar en memoria
+				posibleSolucion = equipo;
 			}
 
 			return;
 		}
 
-		for (int i = 0; i < arqueros.size() + defensores.size()
-				+ mediocampistas.size() + delanteros.size(); ++i) {
+		for (int i = 0; i < jugadoresTotales.size(); ++i) {
 			// para cada jugador posible, ver si tiene sentido agregarlo
 			if (verificarValidezBacktrack(equipo)) {
-				equipo.agregarJugador(null);
+				equipo.agregarJugador(jugadoresTotales.get(i));
 
-				buscarSolucion(equipo, jugadores + 1, arqueros, defensores,
-						mediocampistas, delanteros);
+				buscarSolucion(posibleSolucion, cantidadJugadores + 1, jugadoresTotales);
 
-				equipo.quitarJugador(null);
+				equipo.quitarJugador(jugadoresTotales.get(i));
 			}
 		}
 	}
@@ -41,7 +40,7 @@ public class Logica {
 		int jugadoresTarjetasRojas = 0;
 
 		for (Jugador jugador : equipo.jugadores) {
-
+			// Sumar tarjetas 
 		}
 
 		if (!verificarArmado(equipo) || jugadoresMismaSeleccion > 5
