@@ -6,7 +6,7 @@ public class Logica {
 
 	// Solución implementada con backtracking
 
-	static void buscarSolucion(Equipo equipo, int cantidadJugadores,
+	public static void buscarSolucion(Equipo equipo, int cantidadJugadores,
 			ArrayList<Jugador> jugadoresTotales) {
 		
 		Equipo posibleSolucion = new Equipo();

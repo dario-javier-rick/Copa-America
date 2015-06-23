@@ -14,11 +14,20 @@ import javax.swing.border.EmptyBorder;
 import Logica.Arquero;
 import Logica.Defensor;
 import Logica.Delantero;
+import Logica.Equipo;
 import Logica.Jugador;
+import Logica.Logica;
 import Logica.Mediocampista;
 import Recursos.Fondo;
 
 import java.awt.Toolkit;
+
+import javax.swing.JButton;
+import javax.swing.ListModel;
+
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class GenerarEquipo extends JFrame {
 
@@ -27,9 +36,15 @@ public class GenerarEquipo extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	public static GenerarEquipo frame = new GenerarEquipo();
+	
+	JScrollPane SPJugadores = new JScrollPane();
 	DefaultListModel<Jugador> listModel = new DefaultListModel<Jugador>();
 	JList<Jugador> listJugadores = new JList<Jugador>(listModel);
-	JScrollPane pane = new JScrollPane(listJugadores);
+	
+	JScrollPane SPEquipoIdeal = new JScrollPane();
+	DefaultListModel<Jugador> listModelEquipoIdeal = new DefaultListModel<Jugador>();
+	JList<Jugador> listEquipoIdeal = new JList<Jugador>(listModelEquipoIdeal);
+	
 
 	/**
 	 * Launch the application.
@@ -61,18 +76,39 @@ public class GenerarEquipo extends JFrame {
 	private void initialize() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 552, 414);
+				
 		Fondo p = new Fondo();
 		p.setBackground(Color.BLACK);
 		p.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(p);
 		p.setLayout(null);
 		
-		add(pane, BorderLayout.NORTH);
+		SPJugadores.setViewportView(listJugadores);
+		SPEquipoIdeal.setViewportView(listEquipoIdeal);
+		
+		listJugadores.setBounds(10, 11, 516, 100);
+		p.add(listJugadores);
+		
+		JButton btnGenerarDreamTeam = new JButton("Generar Dream Team!");
+		btnGenerarDreamTeam.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Equipo dreamTeam = new Equipo();
+				Logica.buscarSolucion(dreamTeam, 11, null); // Pasarle ArrayList de jugadores
+				listEquipoIdeal.setVisible(true);
+			}
+		});
+		btnGenerarDreamTeam.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnGenerarDreamTeam.setBounds(191, 157, 147, 43);
+		p.add(btnGenerarDreamTeam);
+		
+		listEquipoIdeal.setBounds(10, 265, 516, 100);
+		listEquipoIdeal.setVisible(false);
+		p.add(listEquipoIdeal);
+		
+		//add(pane, BorderLayout.NORTH);
 
 		bindJugadores();
-		
-		listJugadores.setBounds(0, 0, 100, 100);
-		p.add(listJugadores);
+
 		
 		
 		
@@ -84,18 +120,18 @@ public class GenerarEquipo extends JFrame {
 			for (Delantero delantero : delanteros) {
 				listModel.addElement(delantero);
 			}
-//			ArrayList<Mediocampista> mediocampistas = Mediocampista.getJugadores();
-//			for (Mediocampista mediocampista : mediocampistas) {
-//				listModel.addElement(mediocampista);
-//			}
-//			ArrayList<Defensor> defensores = Defensor.getJugadores();
-//			for (Defensor defensor : defensores) {
-//				listModel.addElement(defensor);
-//			}
-//			ArrayList<Arquero> arqueros = Arquero.getJugadores();
-//			for (Arquero arquero: arqueros) {
-//				listModel.addElement(arquero);
-//			}
+			ArrayList<Mediocampista> mediocampistas = Mediocampista.getJugadores();
+			for (Mediocampista mediocampista : mediocampistas) {
+				listModel.addElement(mediocampista);
+			}
+			ArrayList<Defensor> defensores = Defensor.getJugadores();
+			for (Defensor defensor : defensores) {
+				listModel.addElement(defensor);
+			}
+			ArrayList<Arquero> arqueros = Arquero.getJugadores();
+			for (Arquero arquero: arqueros) {
+				listModel.addElement(arquero);
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
