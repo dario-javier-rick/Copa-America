@@ -75,7 +75,7 @@ public abstract class Jugador implements Serializable {
 		return this.getNombre().toString() + ", "
 				+ this.getClass().getSimpleName() + ", "
 				+ this.getSeleccion().toString() + ", " + this.getPuntaje()
-				+ " Puntos " + this.getTarjetasAmarillas()
+				+ " Puntos, " + this.getTarjetasAmarillas()
 				+ " Tarjetas amarillas , " + this.getTarjetasRojas()
 				+ " Tarjetas rojas";
 	}

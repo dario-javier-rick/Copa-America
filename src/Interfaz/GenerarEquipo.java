@@ -41,6 +41,8 @@ public class GenerarEquipo extends JFrame {
 	DefaultListModel<Jugador> listModel = new DefaultListModel<Jugador>();
 	JList<Jugador> listJugadores = new JList<Jugador>(listModel);
 	
+	ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
+	
 	JScrollPane SPEquipoIdeal = new JScrollPane();
 	DefaultListModel<Jugador> listModelEquipoIdeal = new DefaultListModel<Jugador>();
 	JList<Jugador> listEquipoIdeal = new JList<Jugador>(listModelEquipoIdeal);
@@ -93,7 +95,7 @@ public class GenerarEquipo extends JFrame {
 		btnGenerarDreamTeam.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Equipo dreamTeam = new Equipo();
-				Logica.buscarSolucion(dreamTeam, 11, null); // Pasarle ArrayList de jugadores
+				Logica.buscarSolucion(dreamTeam, 11, jugadores); // Pasarle ArrayList de jugadores
 				listEquipoIdeal.setVisible(true);
 			}
 		});
@@ -119,18 +121,22 @@ public class GenerarEquipo extends JFrame {
 			ArrayList<Delantero> delanteros = Delantero.getJugadores();
 			for (Delantero delantero : delanteros) {
 				listModel.addElement(delantero);
+				jugadores.add(delantero);
 			}
 			ArrayList<Mediocampista> mediocampistas = Mediocampista.getJugadores();
 			for (Mediocampista mediocampista : mediocampistas) {
 				listModel.addElement(mediocampista);
+				jugadores.add(mediocampista);
 			}
 			ArrayList<Defensor> defensores = Defensor.getJugadores();
 			for (Defensor defensor : defensores) {
 				listModel.addElement(defensor);
+				jugadores.add(defensor);
 			}
 			ArrayList<Arquero> arqueros = Arquero.getJugadores();
 			for (Arquero arquero: arqueros) {
 				listModel.addElement(arquero);
+				jugadores.add(arquero);
 			}
 			
 		} catch (Exception e) {
