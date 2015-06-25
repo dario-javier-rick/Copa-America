@@ -4,8 +4,9 @@ import java.util.ArrayList;
 
 public class Equipo{
 	
-	ArrayList<Jugador> jugadores;
+	private ArrayList<Jugador> jugadores;
 	private double puntajeTotal;
+	
 
 	
 	public Equipo()
@@ -16,13 +17,13 @@ public class Equipo{
 	
 	public void agregarJugador(Jugador jugador)
 	{
-		jugadores.add(jugador);
+		getJugadores().add(jugador);
 		setPuntajeTotal(puntajeTotal + jugador.getPuntaje());
 	}
 
 
 	public void quitarJugador(Jugador jugador) {
-		jugadores.remove(jugador);
+		getJugadores().remove(jugador);
 		setPuntajeTotal(puntajeTotal - jugador.getPuntaje());
 	}
 
@@ -33,6 +34,19 @@ public class Equipo{
 	void setPuntajeTotal(double puntajeTotal) {
 		this.puntajeTotal = puntajeTotal;
 	}
+
+
+	public int getCantidadJugadores() {
+		return getJugadores().size();
+	}
+
+
+	ArrayList<Jugador> getJugadores() {
+		return jugadores;
+	}
+
+
+
 
 
 
