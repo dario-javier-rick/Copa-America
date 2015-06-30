@@ -11,7 +11,7 @@ public class Logica {
 
 		Equipo posibleSolucion = new Equipo();
 
-		if (cantidadJugadores == 11) {
+		if (equipo.getCantidadJugadores() == cantidadJugadores) {
 			if (equipo.getPuntajeTotal() > posibleSolucion.getPuntajeTotal()) // ?
 			{
 				posibleSolucion = equipo;
@@ -19,7 +19,7 @@ public class Logica {
 			return;
 		}
 
-		for (int i = 0; i < jugadoresTotales.size(); ++i) {
+		for (int i = equipo.getCantidadJugadores(); i < jugadoresTotales.size(); ++i) {
 			if (verificarValidez(equipo)) {
 				equipo.agregarJugador(jugadoresTotales.get(i));
 				buscarSolucion(posibleSolucion, cantidadJugadores + 1,

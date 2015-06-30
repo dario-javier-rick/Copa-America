@@ -4,10 +4,9 @@ import java.util.ArrayList;
 
 public class Equipo{
 	
-	private ArrayList<Jugador> jugadores;
+	private ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
 	private double puntajeTotal;
 	
-
 	
 	public Equipo()
 	{
@@ -41,7 +40,7 @@ public class Equipo{
 	}
 
 
-	ArrayList<Jugador> getJugadores() {
+	public ArrayList<Jugador> getJugadores() {
 		return jugadores;
 	}
 

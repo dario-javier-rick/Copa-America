@@ -1,6 +1,5 @@
 package Interfaz;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.util.ArrayList;
@@ -23,7 +22,6 @@ import Recursos.Fondo;
 import java.awt.Toolkit;
 
 import javax.swing.JButton;
-import javax.swing.ListModel;
 
 import java.awt.Font;
 import java.awt.event.ActionListener;
@@ -95,14 +93,21 @@ public class GenerarEquipo extends JFrame {
 		btnGenerarDreamTeam.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Equipo dreamTeam = new Equipo();
-				Logica.buscarSolucion(dreamTeam, 11, jugadores); // Pasarle ArrayList de jugadores
+				for(Jugador jugador:jugadores)
+				{
+					dreamTeam.agregarJugador(jugador);
+				}
+				Logica.buscarSolucion(dreamTeam, 0, jugadores); // Pasarle ArrayList de jugadores
+				bindEquipoIdeal(dreamTeam);
 				listEquipoIdeal.setVisible(true);
 			}
+
+
 		});
 		btnGenerarDreamTeam.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnGenerarDreamTeam.setBounds(191, 157, 147, 43);
 		p.add(btnGenerarDreamTeam);
-		
+
 		listEquipoIdeal.setBounds(10, 265, 516, 100);
 		listEquipoIdeal.setVisible(false);
 		p.add(listEquipoIdeal);
@@ -143,5 +148,12 @@ public class GenerarEquipo extends JFrame {
 			e.printStackTrace();
 		}
 
+	}
+	
+	private void bindEquipoIdeal(Equipo dreamTeam) {
+		for(int i =0 ; i< dreamTeam.getCantidadJugadores() ; i++)
+		{
+			listModelEquipoIdeal.addElement(dreamTeam.getJugadores().get(i));
+		}
 	}
 }

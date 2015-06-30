@@ -10,21 +10,18 @@ import Recursos.Fondo;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.LineBorder;
-import javax.swing.border.MatteBorder;
-import javax.swing.border.SoftBevelBorder;
-import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JLabel;
-import javax.swing.JTextPane;
-import javax.swing.JTextArea;
-import javax.swing.JComboBox;
 import java.awt.Toolkit;
 
 public class EquipoIdeal extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9209982730173738741L;
+
+	@SuppressWarnings("unused")
 	private JFrame frame;
 
 	public static EquipoIdeal frame1 = new EquipoIdeal();
